@@ -14,7 +14,7 @@ variable "ec2_names" {
     default = "Assigment_webserver"
 }
 
-varible "vol_size" {
+variable "vol_size" {
   type = string
   default = "8"
 }
