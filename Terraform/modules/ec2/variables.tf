@@ -13,3 +13,8 @@ variable "ec2_names" {
     type = string
     default = "Assigment_webserver"
 }
+
+varible "vol_size" {
+  type = string
+  default = "8"
+}

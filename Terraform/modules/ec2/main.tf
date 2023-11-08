@@ -1,12 +1,14 @@
 resource "aws_instance" "web" {
-  count                       = 2
   ami                         = data.aws_ami.amazon-2.id
   instance_type               = "t2.micro"
-  associate_public_ip_address = true
+  key_name                    = "docker"
   vpc_security_group_ids      = [var.sg_id]
-  subnet_id                   = var.subnets[count.index]
-  user_data                   = file("../jenkins-install.sh")
-  availability_zone = data.aws_availability_zones.available.names[count.index]
+  subnet_id                   = var.subnets
+  availability_zone = data.aws_availability_zones.available.names
+
+  root_block_device {
+    volume_size = var.vol_size
+  }
   
   tags = {
     Name = var.ec2_names
